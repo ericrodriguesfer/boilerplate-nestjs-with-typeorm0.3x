@@ -1,0 +1,23 @@
+{
+   "compilerOptions": {
+      "lib": [
+         "es5",
+         "es6"
+      ],
+      "target": "es5",
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "baseUrl": "./",
+      "outDir": "./build",
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "sourceMap": true,
+      "paths": {
+         "@/*": ["src/*"],
+         "@app/*": ["src/app/*"],
+         "@database/*": ["src/database/*"],
+         "@datasource": ["src/database/data-source.ts"],
+         "@modules/*": ["src/modules/*"],
+      }
+   }
+}

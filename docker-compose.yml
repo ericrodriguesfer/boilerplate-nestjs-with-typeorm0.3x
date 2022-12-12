@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  api:
+    container_name: 'boilerplate-nestjs-with-typeorm'
+    build: .
+    ports:
+      - ${PORT}:${PORT}
+    volumes:
+      - .:/home/api
+    environment:
+      - TYPEORM_HOST=database
+      - TYPEORM_PORT=5432
+
+  database:
+    container_name: 'database-boilerplate'
+    image: 'postgres:13-alpine'
+    environment:
+      - POSTGRES_USER=${TYPEORM_USER}
+      - POSTGRES_PASSWORD=${TYPEORM_PASS}
+      - POSTGRES_DB=${TYPEORM_DB}
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    ports:
+      - ${TYPEORM_PORT}:5432
+    restart: always
+    networks:
+      - backend-boilerplate
+
+networks:
+  backend-boilerplate:
+    driver: bridge
